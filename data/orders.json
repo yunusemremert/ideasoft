@@ -1,0 +1,78 @@
+[
+    {
+        "id": 27734658,
+        "customerId": 1,
+        "items": [
+            {
+                "productId": 102,
+                "quantity": 10,
+                "unitPrice": "11.28",
+                "total": 112.8
+            },
+            {
+                "productId": 102,
+                "quantity": 10,
+                "unitPrice": "11.28",
+                "total": 112.8
+            }
+        ],
+        "total": 225.6
+    },
+    {
+        "id": 31329900,
+        "customerId": 1,
+        "items": [
+            {
+                "productId": 102,
+                "quantity": 5,
+                "unitPrice": "11.28",
+                "total": 56.4
+            }
+        ],
+        "total": 56.4
+    },
+    {
+        "id": 55162290,
+        "customerId": 1,
+        "items": [
+            {
+                "productId": 102,
+                "quantity": 10,
+                "unitPrice": "11.28",
+                "total": 112.8
+            },
+            {
+                "productId": 102,
+                "quantity": 10,
+                "unitPrice": "11.28",
+                "total": 112.8
+            }
+        ],
+        "total": 225.6
+    },
+    {
+        "id": 88085729,
+        "customerId": 1,
+        "items": [
+            {
+                "productId": 100,
+                "quantity": 10,
+                "unitPrice": "120.75",
+                "total": 1207.5
+            },
+            {
+                "productId": 101,
+                "quantity": 5,
+                "unitPrice": "49.50",
+                "total": 247.5
+            },
+            {
+                "productId": 102,
+                "quantity": 6,
+                "unitPrice": "11.28",
+                "total": 67.88
+            }
+        ],
+        "total": 1522.88
+    }
+]

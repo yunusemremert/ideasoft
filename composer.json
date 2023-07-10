@@ -1,0 +1,26 @@
+{
+    "authors": [
+        {
+            "name": "Yunus Emre MERT",
+            "email": "yunusemremert@yandex.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.6",
+        "monolog/monolog": "^3.4",
+        "php-di/slim-bridge": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "server": "php -S localhost:8888 -t public"
+    },
+    "config": {
+        "process-timeout": 0
+    }
+}
