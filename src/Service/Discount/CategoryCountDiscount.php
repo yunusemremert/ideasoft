@@ -13,14 +13,18 @@ class CategoryCountDiscount implements DiscountInterface
     public float $discountAmount;
     public float $totalAmountDiscount;
 
-    public function __construct(int $categoryId, int $productCountLimit, int $discountRate)
+    public function __construct()
     {
-        $this->categoryId          = $categoryId;
-        $this->productCountLimit   = $productCountLimit;
-        $this->discountRate        = $discountRate;
-        $this->discountName        = 'BUY_' . $productCountLimit . '_GET_1';
         $this->discountAmount      = 0;
         $this->totalAmountDiscount = 0;
+    }
+
+    public function setDiscount(int $categoryId, int $productCountLimit, int $discountRate): void
+    {
+        $this->categoryId        = $categoryId;
+        $this->productCountLimit = $productCountLimit;
+        $this->discountRate      = $discountRate;
+        $this->discountName      = 'BUY_' . $productCountLimit . '_GET_1';
     }
 
     public function runOn(DiscountService $discountService): void

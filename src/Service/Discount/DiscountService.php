@@ -11,22 +11,29 @@ final class DiscountService
     public int|float $orderTotalAmount = 0;
     private int $orderId;
 
-    public function __construct(array $order)
+    public function __construct(
+        private readonly ProductService        $productService,
+        private readonly TotalDiscount         $totalDiscountService,
+        private readonly CategoryCountDiscount $categoryCountDiscountService,
+        private readonly CategoryMinDiscount   $categoryMinDiscountService
+    )
+    {
+        $this->discounts = [];
+    }
+
+    public function setOrderItems(array $order): void
     {
         $this->products         = $this->getOrderProductCategories($order["items"]);
         $this->orderTotalAmount = $order["total"];
-        $this->discounts        = [];
         $this->orderId          = $order["id"];
     }
 
     private function getOrderProductCategories(array $orderProducts): array
     {
-        $productService = new ProductService();
-
         $products = [];
 
         foreach ($orderProducts as $orderProduct) {
-            $productCheck = $productService->findProduct($orderProduct["productId"]);
+            $productCheck = $this->productService->findProduct($orderProduct["productId"]);
 
             $orderProduct["categoryId"]     = "";
 
@@ -84,7 +91,9 @@ final class DiscountService
 
     private function totalDiscount(): void
     {
-        $totalDiscount     = new TotalDiscount(1000, 10);
+        $totalDiscount = $this->totalDiscountService;
+
+        $totalDiscount->setDiscount(1000, 10);
         $totalDiscount->runOn($this);
 
         $this->discounts[] = $totalDiscount;
@@ -92,17 +101,20 @@ final class DiscountService
 
     private function categoryCountDiscount(): void
     {
-        $categoryDiscount  = new CategoryCountDiscount(2, 6, 100);
-        $categoryDiscount->runOn($this);
+        $categoryCountDiscount = $this->categoryCountDiscountService;
 
-        $this->discounts[] = $categoryDiscount;
+        $categoryCountDiscount->setDiscount(2, 6, 100);
+        $categoryCountDiscount->runOn($this);
+
+        $this->discounts[] = $categoryCountDiscount;
     }
 
     private function categoryMinDiscount(): void
     {
-        $categoryDiscount  = new CategoryMinDiscount(1, 2, 20);
-        $categoryDiscount->runOn($this);
+        $categoryMinDiscount = $this->categoryMinDiscountService;
+        $categoryMinDiscount->setDiscount(1, 2, 20);
+        $categoryMinDiscount->runOn($this);
 
-        $this->discounts[] = $categoryDiscount;
+        $this->discounts[] = $categoryMinDiscount;
     }
 }

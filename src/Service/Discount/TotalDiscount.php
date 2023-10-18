@@ -12,13 +12,17 @@ class TotalDiscount implements DiscountInterface
     public float $discountAmount;
     public float $totalAmountDiscount;
 
-    public function __construct(float $totalAmountLimit, int $discountRate)
+    public function __construct()
     {
-        $this->totalAmountLimit    = $totalAmountLimit;
-        $this->discountRate        = $discountRate;
         $this->discountName        = '10_PERCENT_OVER_1000';
         $this->discountAmount      = 0;
         $this->totalAmountDiscount = 0;
+    }
+
+    public function setDiscount(float $totalAmountLimit, int $discountRate): void
+    {
+        $this->totalAmountLimit    = $totalAmountLimit;
+        $this->discountRate        = $discountRate;
     }
 
     public function runOn(DiscountService $discountService): void
