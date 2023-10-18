@@ -13,7 +13,7 @@ final class CustomerController extends BaseController
     {
     }
 
-    // request = page, order BY ..
+    // request = page, order BY ...
     public function getAll(Request $request, Response $response): Response
     {
         $customers = $this->customerService->getAllCustomers();
